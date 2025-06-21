@@ -5,3 +5,6 @@ okarol-ruta68
 
 ruta68-ssh
 tXodW6Ft9ZgxpHl7tSQp
+
+Direccion de archivos
+root@ubuntu-nubelon:/home/ruta68-ssh/htdocs/ruta68.okarol.com# 

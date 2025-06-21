@@ -19,9 +19,22 @@ from django.urls import path, include
 
 from rest_framework.authtoken.views import obtain_auth_token
 
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+    TokenBlacklistView
+)
+
+from .views import CustomTokenObtainPairView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('cargas.urls')),
+    # Endpoints sin JWT
     path('api-auth/', include('rest_framework.urls')),  # <--- Agrega esta línea
     path('api/token-auth/', obtain_auth_token),  # <--- Endpoint para login por token
+    # JWT endpoints:
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+     # Endpoint para logout (blacklist del refresh token)
+    path('api/logout/', TokenBlacklistView.as_view(), name='token_blacklist'),
 ]
